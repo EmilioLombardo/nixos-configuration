@@ -14,7 +14,7 @@
       nixosConfigurations = {
         
         # Desktop configuration
-        desktop = nixpkgs.lib.nixosSystem {
+        hp-laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./common-configuration.nix
