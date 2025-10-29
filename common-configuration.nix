@@ -109,6 +109,10 @@
 
   services.tailscale.enable = true;
 
+  environment.sessionVariables = {
+    NH_OS_FLAKE = "/etc/nixos";
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
