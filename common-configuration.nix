@@ -56,9 +56,10 @@
     description = "Emilio Lombardo";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
-    # packages = with pkgs; [
-    #   # ...
-    # ];
+    packages = with pkgs; [
+      nh
+      nix-output-monitor
+    ];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2x/XJb4aWJdnd+vWz7biG0PXXAnN1FR9wOiocG0Rix emilomb3@gmail.com" ];
   };
 
