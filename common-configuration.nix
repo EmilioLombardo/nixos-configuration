@@ -94,6 +94,10 @@
     enableSSHSupport = true;
   };
 
+  # Enable mosh, the ssh alternative when client has bad connection
+  # Opens UDP ports 60000 ... 61000
+  programs.mosh.enable = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
