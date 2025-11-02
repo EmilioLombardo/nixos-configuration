@@ -14,16 +14,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # [[ NETWORKING ]] {{{
+  networking.networkmanager.enable = true; # Enable networking
   networking.hostName = "hp-laptop"; # Define your hostname.
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # }}}
 
+  # [[ TIME ZONE & LOCALE ]] {{{
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -41,17 +44,17 @@
     LC_TELEPHONE = "nb_NO.UTF-8";
     LC_TIME = "nb_NO.UTF-8";
   };
+  # }}}
 
-  # Configure console (i.e. tty)
+  # [[ CONFIGURE CONSOLE (i.e. tty) ]] {{{
   console = {
     earlySetup = true;
     font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
     packages = with pkgs; [ terminus_font ];
     keyMap = "no";
-  };
+  }; # }}}
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.emilio = {
+  users.users.emilio = { # {{{
     isNormalUser = true;
     description = "Emilio Lombardo";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -61,14 +64,17 @@
       nix-output-monitor
     ];
     openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2x/XJb4aWJdnd+vWz7biG0PXXAnN1FR9wOiocG0Rix emilomb3@gmail.com" ];
-  };
+    # Don't forget to set a password with ‘passwd’.
+  }; # }}}
+
+  # [[ PROGRAMS ]] {{{
 
   programs.zsh.enable = true;
 
   programs.git = {
     enable = true;
     config = {
-      push = { autoSetupRemote = true; };
+      push.autoSetupRemote = true;
       credential.helper = "${
           pkgs.git.override { withLibsecret = true; }
         }/bin/git-credential-libsecret";
@@ -97,8 +103,10 @@
   # Enable mosh, the ssh alternative when client has bad connection
   # Opens UDP ports 60000 ... 61000
   programs.mosh.enable = true;
+  
+  # }}}
 
-  # List services that you want to enable:
+  # [[ SERVICES ]] {{{
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -112,6 +120,8 @@
   };
 
   services.tailscale.enable = true;
+
+  # }}}
 
   environment.sessionVariables = {
     NH_OS_FLAKE = "/etc/nixos";
@@ -134,3 +144,5 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
+
+# vim: foldmethod=marker sw=2
