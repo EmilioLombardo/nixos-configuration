@@ -127,6 +127,12 @@
     NH_OS_FLAKE = "/etc/nixos";
   };
 
+  # Enable swap file
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 2*1024; # 2 GB
+  }];
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
