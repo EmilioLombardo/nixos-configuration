@@ -127,6 +127,15 @@
     NH_OS_FLAKE = "/etc/nixos";
   };
 
+  # Add symlinks in /bin for bash and zsh so that the usual script hashbangs work
+  system.activationScripts.binbash = {
+    deps = [ "binsh" ];
+    text = ''
+         ln -sf ${pkgs.zsh}/bin/zsh /bin/zsh
+         ln -sfL /bin/sh /bin/bash
+    '';
+  };
+
   # Enable swap file
   swapDevices = [{
     device = "/var/lib/swapfile";
