@@ -80,6 +80,8 @@
   environment.systemPackages = with pkgs; [
     uwsm
     kitty
+    pavucontrol
+    libnotify
   ];
 
   fonts.packages = with pkgs; [
