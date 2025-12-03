@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -81,14 +81,22 @@
     };
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # Allow unfree packages
+    config.allowUnfree = true;
+    overlays = [
+      (final: prev: {
+        unstable = pkgs-unstable;
+      })
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
     neovim
+  #  unstable.hello
   #  wget
   ];
 
