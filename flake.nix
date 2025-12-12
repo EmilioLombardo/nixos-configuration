@@ -4,9 +4,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    zen-browser-flake = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, ... }:
+  outputs = { nixpkgs, nixpkgs-unstable, zen-browser-flake, ... }:
     # { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
@@ -20,11 +24,13 @@
         hp-laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            ./zen-browser.nix
             ./common-configuration.nix
             ./desktop-configuration.nix
           ];
           specialArgs = {
             inherit pkgs-unstable;
+            inherit zen-browser-flake;
           };
         };
 
