@@ -88,6 +88,11 @@
     nerd-fonts.fira-code
   ];
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = { 
+    # Needed for dead keys to be handled correctly in GTK apps
+    GTK_IM_MODULE="simple";
+    # Needed for Electron apps to play nicely with Wayland on NixOS
+    NIXOS_OZONE_WL = "1";
+  };
 
 }

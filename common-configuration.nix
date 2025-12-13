@@ -46,6 +46,22 @@
   };
   # }}}
 
+  # # [[ INPUT METHOD / fcitx5 ]]
+  # # TODO: Figure out how to use fcitx5 without ruining my current xkb setup.
+  # # fcitx5 is probably very cool, but it has weird conflicts with ctrl:swapcaps
+  # # that i have not yet figured out...
+  # i18n.inputMethod = { # {{{
+  #   type = "fcitx5";
+  #   enable = true;
+  #   fcitx5.addons = with pkgs; [
+  #     fcitx5-mozc
+  #     fcitx5-gtk
+  #   ];
+  #   # To suppress warnings about env vars on wayland
+  #   fcitx5.waylandFrontend = true;
+  # };
+  # # }}}
+
   # [[ CONFIGURE CONSOLE (i.e. tty) ]] {{{
   console = {
     earlySetup = true;
