@@ -11,6 +11,17 @@
   # services.logind.lidSwitchExternalPower = "ignore";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
+  services.nginx = {
+    enable = true;
+    virtualHosts.localhost = {
+      enableACME = false;
+      forceSSL = false;
+      root = "/srv/www/emiliobl";
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
   boot.kernelParams = [ 
     "consoleblank=300"
   ];
