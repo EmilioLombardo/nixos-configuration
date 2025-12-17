@@ -76,6 +76,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
+      # TODO: Move terminal utils without user config from home.nix to here
       nh
       nix-output-monitor
     ];
