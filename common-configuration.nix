@@ -117,8 +117,19 @@
   environment.systemPackages = with pkgs; [
     vim
     neovim
+
+    htop
+    wget
+    autossh
+
+    cmake
+    clang
+    gnumake
+    gcc
+    mpi
+    zlib
+
   #  unstable.hello
-  #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
